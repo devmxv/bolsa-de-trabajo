@@ -5,7 +5,7 @@
         <ul class="list-group">
         <li class="list-group-item"><a href="{{ route('home') }}">Inicio</a></li>
           <li class="list-group-item"><a href="{{ route('vacantes.index') }}">Vacantes</a></li>
-          <li class="list-group-item">Categorías</li>
+        <li class="list-group-item"><a href="{{ route('categorias.index') }}">Categorías</a></li>
           <li class="list-group-item">Status</li>
         </ul>
       </div>

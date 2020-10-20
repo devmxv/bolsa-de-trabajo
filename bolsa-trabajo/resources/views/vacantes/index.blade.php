@@ -3,12 +3,15 @@
 
 @section('content')
 <div class="container">
+    <div class="d-flex justify-content-end mb-2">
+    <a href="{{ route('vacantes.create') }}" class="btn btn-success float-right">Nueva Vacante</a>
+    </div>
   <div class="row justify-content-center">
       @include('partials.menu')
       <div class="col-md-8">
           <div class="card">
 
-              <div class="card-header">Detalle de vacante</div>
+              <div class="card-header">Vacantes Disponibles</div>
 
               <div class="card-body">
                   @if (session('status'))
@@ -32,8 +35,10 @@
                           <tr>
                             <td>{{ $vacante->titulo }}</td>
                             <td>${{ $vacante->salario }}</td>
-                          </tr>
-                          <tr>
+                            <td>
+                                <a href="{{ route('vacantes.index') }}" class="btn btn-md btn-info" style="color:white">Ver</a>
+                                <button type="submit" class="btn btn-md btn-danger">Eliminar</button>
+                            </td>
                           </tr>
                           @endforeach
                       </tbody>
