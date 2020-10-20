@@ -4,16 +4,10 @@
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
-      <div class="col-md-4">
-              <div class="card">
-                  <div class="card-header">Menú</div>
-                  <div class="card-body">
-
-              </div>
-          </div>
-      </div>
-      <div class="col-md-8"></div>
+      @include('partials.menu')
+      <div class="col-md-8">
           <div class="card">
+
               <div class="card-header">Detalle de vacante</div>
 
               <div class="card-body">

@@ -3,19 +3,23 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">Menú</div>
-                    <div class="card-body">
-
-               </div>
-            </div>
-        </div>
+        @include('partials.menu')
 
         <div class="col-md-8">
-            <a href="{{ route('vacantes.create') }}" class="btn btn-md btn-success mb-2">Nueva Vacante</a>
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="body m-4">
+                    <h2 class="text-center">Bienvenido a nuestra bolsa de trabajo!</h2>
+                    <p>Aquí puedes checar las ofertas que tenemos disponibles.
+                        Casi no entramos a este sitio pero tu ten fé de que veremos tu CV
+                        en caso de que nos interese (si es que entramos aquí como ya dijimos).
+                    </p>
+                    <p>Ofrecemos pagas bajas, horarios en los que no tengas vida y ofertas
+                        prestaciones de ley que serán irresistibles para tí.
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">Veamos que hay...</div>
 
 
                 <div class="card-body">
@@ -25,23 +29,31 @@
                         </div>
                     @endif
 
-                    <h2 class="mb-5 text-center">Listado de vacantes</h2>
+                    <h2 class="mb-5 text-center">Vacantes Destacadas</h2>
                     <table class="table">
                         <thead>
                             <th>Nombre de vacante</th>
-                            <th>Status</th>
+                            <th>Salario</th>
                             <th>Acciones</th>
                         </thead>
                         <tbody>
+                            @foreach($vacantes as $vacante)
                             <tr>
-                                <td>Hola</td>
-                                <td>Pendiente</td>
                                 <td>
-                                <a href="{{ route('vacantes.index') }}" class="btn btn-md btn-info" style="color:white">Ver</a>
-                                <a href="" class="btn btn-md btn-danger">Eliminar</a>
-
+                                    {{ $vacante->titulo }}
+                                </td>
+                                <td>
+                                    ${{ $vacante->salario }} MXN
+                                </td>
+                                <td>
+                                    <a href="{{ route('vacantes.index') }}" class="btn btn-md btn-info" style="color:white">Ver</a>
                                 </td>
                             </tr>
+                            <tr>
+
+
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
