@@ -46,7 +46,7 @@
                                     ${{ $vacante->salario }} MXN
                                 </td>
                                 <td>
-                                    <a href="{{ route('vacantes.index') }}" class="btn btn-md btn-info" style="color:white">Ver</a>
+                                    <a href="{{ route('vacantes.show', $vacante->id) }}" class="btn btn-md btn-info" style="color:white">Ver</a>
                                 </td>
                             </tr>
                             <tr>
