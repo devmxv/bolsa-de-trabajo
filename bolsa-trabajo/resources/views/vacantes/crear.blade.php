@@ -22,8 +22,20 @@
                       <trix-editor input="descripcion"></trix-editor>
                     </div>
                     <div class="form-group">
-                      <label for="categoria">Categoría</label>
-                      <input type="select" name="categoria_id" class="form-control">
+                      <label for="categoria_id">Categoría</label>
+                      <select name="categoria_id" id="categoria_id" class="form-control">
+                        @foreach($categorias as $categoria)
+                          <option value="{{ $categoria->id }}"
+                            @if(isset($vacante))
+                              @if($categoria->id == $vacante->categoria_id)
+                                selected
+                              @endif
+                            @endif
+                          >
+                          {{ $categoria->nombre }}
+                          </option>
+                          @endforeach
+                      </select>
                     </div>
                     <div class="form-group">
                       <label for="salario">Salario</label>

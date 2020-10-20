@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CrearVacanteRequest;
 use App\Vacante;
+use App\Categoria;
 use Illuminate\Http\Request;
 
 class VacanteControlador extends Controller
@@ -26,8 +27,8 @@ class VacanteControlador extends Controller
      */
     public function create()
     {
-        //
-        return view('vacantes.crear');
+        //---Trae las categorías relacionadas
+        return view('vacantes.crear')->with('categorias', Categoria::all());
     }
 
     /**
@@ -44,7 +45,7 @@ class VacanteControlador extends Controller
         $vacante = Vacante::create([
             'titulo' => $request->titulo,
             'descripcion' => $request->descripcion,
-            'categoria_id' => 1,
+            'categoria_id' => $request->categoria_id,
             'salario' => $request->salario,
             'status_id' => 1,
             'fecha_inicio' => $request->fecha_inicio,
