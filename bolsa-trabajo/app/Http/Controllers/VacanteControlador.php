@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CrearVacanteRequest;
 use App\Vacante;
 use App\Categoria;
+use App\StatusVacante;
 use Illuminate\Http\Request;
 
 class VacanteControlador extends Controller
@@ -28,7 +29,7 @@ class VacanteControlador extends Controller
     public function create()
     {
         //---Trae las categorías relacionadas
-        return view('vacantes.crear')->with('categorias', Categoria::all());
+        return view('vacantes.crear')->with('categorias', Categoria::all())->with('status', StatusVacante::all());
     }
 
     /**

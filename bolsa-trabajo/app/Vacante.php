@@ -19,4 +19,9 @@ class Vacante extends Model
     {
         return $this->belongsTo(Categoria::class);
     }
+
+    public function status()
+    {
+        return $this->belongsTo(StatusVacante::class);
+    }
 }

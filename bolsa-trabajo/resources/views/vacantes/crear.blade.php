@@ -38,6 +38,22 @@
                       </select>
                     </div>
                     <div class="form-group">
+                      <label for="status">Status</label>
+                      <select name="status" id="status" class="form-control">
+                        @foreach($status as $stat)
+                        <option value="{{ $stat->id }}"
+                          @if(isset($vacante))
+                            @if($stat->id == $vacante->status_id)
+                              selected
+                            @endif
+                          @endif
+                        >
+                        {{ $stat->nombre }}
+                        </option>
+                        @endforeach
+                      </select>
+                    </div>
+                    <div class="form-group">
                       <label for="salario">Salario</label>
                       <input type="number" name="salario" min="1" max="999999" class="form-control">
                     </div>
