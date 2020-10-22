@@ -15,7 +15,13 @@ use App\Vacante;
 */
 
 
+
+
 Auth::routes();
+
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -24,3 +30,8 @@ Route::resource('vacantes', 'VacanteControlador');
 Route::resource('categorias', 'CategoriaController');
 
 Route::resource('status', 'StatusVacanteController');
+
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::resource('usuarios', 'UsuarioController');
+});
