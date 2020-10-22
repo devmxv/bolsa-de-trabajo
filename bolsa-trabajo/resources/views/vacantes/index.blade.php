@@ -19,14 +19,14 @@
                           {{ session('status') }}
                       </div>
                   @endif
-
+                @if($vacantes->count() > 0)
                   <table class="table">
                       <tbody>
                           <th>
                               Título
                           </th>
                           <th>
-                              Categoría
+                              Área
                           </th>
                           <th>
                               Salario
@@ -48,6 +48,10 @@
                           @endforeach
                       </tbody>
                   </table>
+                @else
+
+                  <h4 class="text-center text-secondary m-3">No hay vacantes disponibles por lo que tendrás que buscar en otro lado D:</h4>
+                @endif
                   <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                     <form action="" method="POST" id="eliminarVacForm">

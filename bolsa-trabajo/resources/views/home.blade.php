@@ -30,6 +30,12 @@
                     @endif
 
                     <h2 class="mb-5 text-center">Vacantes Destacadas</h2>
+                    <div class="text-center p-1">
+                        <p>Nos han pagado una buena lana para poder mostrar las vacantes destacadas aquí
+                            pero eso no garantiza que te contacten.
+                        </p>
+                        <p>Nosotros ya hicimos nuestra parte...buena suerte! (suponemos)</p>
+                    </div>
                     <table class="table">
                         <thead>
                             <th>Nombre de vacante</th>
@@ -40,7 +46,7 @@
                             @foreach($vacantes as $vacante)
                             <tr>
                                 <td>
-                                    {{ $vacante->titulo }}
+                                    <strong><i>{{ $vacante->titulo }}</i></strong>
                                 </td>
                                 <td>
                                     ${{ $vacante->salario }} MXN
@@ -48,10 +54,6 @@
                                 <td>
                                     <a href="{{ route('vacantes.show', $vacante->id) }}" class="btn btn-md btn-info" style="color:white">Ver</a>
                                 </td>
-                            </tr>
-                            <tr>
-
-
                             </tr>
                             @endforeach
                         </tbody>

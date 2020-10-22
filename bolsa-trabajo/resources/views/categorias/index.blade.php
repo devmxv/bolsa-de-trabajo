@@ -19,7 +19,7 @@
                           {{ session('status') }}
                       </div>
                   @endif
-
+                @if($categorias->count() > 0)
                   <table class="table">
                       <tbody>
                           <th>
@@ -39,6 +39,11 @@
                           @endforeach
                       </tbody>
                   </table>
+                  @else
+                    <h5 class="text-center text-secondary m-3">No hay vacantes disponibles por lo que tendrás que buscar en otro lado D:</h5>
+                  @endif
+
+                  <!--Modal de eliminación de registro-->
                   <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                     <form action="" method="POST" id="eliminarCatForm">
@@ -61,6 +66,7 @@
                       </div>
                     </form>
                   </div>
+                  <!-- // Fin modal de eliminación de registro -->
               </div>
           </div>
       </div>

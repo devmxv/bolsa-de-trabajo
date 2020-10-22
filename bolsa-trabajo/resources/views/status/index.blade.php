@@ -19,7 +19,7 @@
                           {{ session('status') }}
                       </div>
                   @endif
-
+                @if($status->count() > 0)
                   <table class="table">
                       <tbody>
                           <th>
@@ -39,6 +39,10 @@
                           @endforeach
                       </tbody>
                   </table>
+                @else
+                  <h5 class="text-center text-secondary m-3">No hay status de vacante registrados. Que esperas y agrega uno haciendo clic al botón de arriba!</h5>
+                @endif
+                  <!-- Modal de eliminación de registro -->
                   <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                     <form action="" method="POST" id="eliminarStatusForm">
@@ -61,6 +65,7 @@
                       </div>
                     </form>
                   </div>
+                  <!-- // Fin Modal -->
               </div>
           </div>
       </div>
