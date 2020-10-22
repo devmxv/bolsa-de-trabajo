@@ -101,7 +101,14 @@ class StatusVacanteController extends Controller
      */
     public function destroy(StatusVacante $status)
     {
-        //
+        //---Validar si hay o no hay vacantes con status
+        //dd($status->vacantes);
+        // if ($status->vacantes->count() > 0) {
+        //     session()->flash('error', 'Esta categoría no puede eliminarse porque hay vacantes activas.');
+        //     return redirect()->back();
+        // }
+
+
         $status->delete();
 
         session()->flash('success', 'Estado de vacante eliminado correctamente!');

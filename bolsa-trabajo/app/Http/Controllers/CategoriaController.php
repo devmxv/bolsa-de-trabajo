@@ -101,6 +101,10 @@ class CategoriaController extends Controller
     public function destroy(Categoria $categoria)
     {
         //---TODO: Checar que no haya vacantes con esta categoría
+        if ($categoria->vacantes->count() > 0) {
+            session()->flash('error', 'Esta categoría no puede eliminarse porque hay vacantes activas.');
+            return redirect()->back();
+        }
 
         $categoria->delete();
 
