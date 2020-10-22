@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CrearVacanteRequest;
 use App\Vacante;
 use App\Categoria;
+use App\Http\Requests\ActualizarVacanteRequest;
 use App\StatusVacante;
 use Illuminate\Http\Request;
 
@@ -77,9 +78,10 @@ class VacanteControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Vacante $vacante)
     {
         //
+        return view('vacantes.crear')->with('vacante', $vacante)->with('categorias', Categoria::all())->with('status', StatusVacante::all());
     }
 
     /**
@@ -89,9 +91,20 @@ class VacanteControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Vacante $vacante)
     {
         //
+        $data = $request->only([
+            'titulo', 'descripcion', 'categoria_id',
+            'salario', 'status_id', 'fecha_inicio',
+            'fecha_fin'
+        ]);
+
+        $vacante->update($data);
+
+        session()->flash('success', 'Vacante actualizada correctamente!');
+
+        return redirect(route('vacantes.index'));
     }
 
     /**
@@ -100,8 +113,13 @@ class VacanteControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Vacante $vacante)
     {
         //
+        $vacante->delete();
+
+        session()->flash('success', 'Vacante eliminada correctamente. Nadie vio nada!');
+
+        return redirect(route('vacantes.index'));
     }
 }

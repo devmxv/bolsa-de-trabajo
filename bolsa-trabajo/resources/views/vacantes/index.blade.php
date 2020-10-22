@@ -41,16 +41,53 @@
                             <td>${{ $vacante->salario }}</td>
                             <td>
                                 <a href="{{ route('vacantes.show', $vacante->id) }}" class="btn btn-md btn-info" style="color:white">Ver</a>
-                                <button type="submit" class="btn btn-md btn-danger">Eliminar</button>
+                                <a href="{{ route('vacantes.edit', $vacante->id) }}" class="btn btn-md btn-warning">Editar</a>
+                                <button type="submit" class="btn btn-md btn-danger" onclick="eliminar({{ $vacante->id }})">Eliminar</button>
                             </td>
                           </tr>
                           @endforeach
                       </tbody>
                   </table>
+                  <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <form action="" method="POST" id="eliminarVacForm">
+                    @method('DELETE')
+                    @csrf
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="deleteModalLabel">Eliminar Vacante</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p class="text-center text-bold">Seguro quieres eliminar esta vacante? ¿Te cansaste de esperar al candidato rockstar?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">No, mejor pregunto primero</button>
+                          <button type="submit" class="btn btn-danger">Si, ALV!</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
               </div>
           </div>
       </div>
   </div>
 </div>
+
+@endsection
+
+
+@section('scripts')
+    <script>
+        function eliminar(id){
+            var form = document.getElementById('eliminarVacForm');
+            form.action = '/vacantes/' + id;
+
+            $('#modalEliminar').modal('show');
+        }
+    </script>
+
 
 @endsection

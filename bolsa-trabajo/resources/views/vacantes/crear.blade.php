@@ -6,19 +6,22 @@
       @include('partials.menu')
       <div class="col-md-8">
           <div class="card">
-              <div class="card-header">Detalle de vacante</div>
+          <div class="card-header">{{ isset($vacante) ? 'Modificación de vacante' : 'Crear Vacante' }}</div>
 
               <div class="card-body">
                 @include('partials.errors')
-                  <form action="{{ route('vacantes.store') }}" method="POST">
+                  <form action="{{ isset($vacante) ? route('vacantes.update', $vacante->id) : route('vacantes.store') }}" method="POST">
                   @csrf
+                  @if(isset($vacante))
+                    @method('PUT')
+                  @endif
                     <div class="form-group">
                       <label for="titulo">Título</label>
-                      <input type="text" class="form-control" name="titulo" value="" />
+                    <input type="text" class="form-control" name="titulo" value="{{ isset($vacante) ? $vacante->titulo : '' }}" />
                     </div>
                     <div class="form-group">
                       <label for="descripcion">Descripción</label>
-                      <input id="descripcion" type="hidden" name="descripcion">
+                    <input id="descripcion" type="hidden" name="descripcion" value="{{ isset($vacante) ? $vacante->descripcion : '' }}">
                       <trix-editor input="descripcion"></trix-editor>
                     </div>
                     <div class="form-group">
@@ -55,18 +58,18 @@
                     </div>
                     <div class="form-group">
                       <label for="salario">Salario</label>
-                      <input type="number" name="salario" min="1" max="999999" class="form-control">
+                    <input type="number" name="salario" min="1" max="999999" class="form-control" value="{{ isset($vacante) ? $vacante->salario : ''}}">
                     </div>
                     <div class="form-group">
                       <label for="fecha_inicio">Fecha Inicio publicación</label>
-                      <input type="text" class="form-control" name="fecha_inicio" id="fecha_inicio">
+                    <input type="text" class="form-control" name="fecha_inicio" id="fecha_inicio" value="{{ isset($vacante) ? $vacante->fecha_inicio : '' }} ">
                     </div>
                     <div class="form-group">
                       <label for="fecha_fin">Fecha Final publicación</label>
-                      <input type="text" class="form-control" name="fecha_fin" id="fecha_fin">
+                    <input type="text" class="form-control" name="fecha_fin" id="fecha_fin" value="{{ isset($vacante) ? $vacante->fecha_fin : ''}}">
                     </div>
                     <div class="form-group">
-                      <button type="submit" class="btn btn-lg btn-success">Continuar</button>
+                      <button type="submit" class="btn btn-lg btn-success">{{ isset($vacante) ? 'Actualizar' : 'Agregar' }}</button>
                     </div>
                   </form>
 
